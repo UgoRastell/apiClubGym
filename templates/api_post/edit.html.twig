@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Editer les informations du club {{club.name}}
+{% endblock %}
+
+{% block body %}
+    <h1>Editer les informations du club {{club.name}}</h1>
+
+    {{form_start(formView)}}
+
+    {{form_errors(formView)}}
+
+ 
+    <div class="row">
+        <div class="col">
+            {{form_row(formView.name)}}
+            {{form_row(formView.lieu)}}
+        </div>
+        <div class="col">
+            {{form_row(formView.description)}}
+        </div>
+    </div>
+
+ 
+    <button type="submit"class="btn btn-primary"><i class="fas fa-save"></i> Modifier les informations du club</button>
+{% endblock %}
