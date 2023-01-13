@@ -14,19 +14,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApiPostController extends AbstractController
 {
-    #[Route('/api/show', name: 'app_api_post_index', methods: ['GET'])]
+    #[Route('/', name: 'app_api_post_index', methods: ['GET'])]
     public function index(ClubsRepository $clubsRepository)
     {
         return $this->json($clubsRepository->findAll(),200,[]);
     }
 
-    #[Route('/api/show/{id}', name: 'app_api_post_getById', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_api_post_getById', methods: ['GET'])]
     public function getById($id,ClubsRepository $clubsRepository)
     {
         return $this->json($clubsRepository->findOneBy(['id' => $id]),200,[]);
     }
 
-    #[Route('/api/remove/{id}', name: 'app_api_post_deleteById', methods: ['GET'])]
+    #[Route('/remove/{id}', name: 'app_api_post_deleteById', methods: ['GET'])]
     public function deleteById($id, ClubsRepository $clubsRepository, EntityManagerInterface $entityManager)
     {
     $club = $clubsRepository->find($id);
@@ -41,7 +41,7 @@ class ApiPostController extends AbstractController
     return $this->json(null, 204);
     }
     
-    #[Route('/api/add', name: 'app_api_post_add', methods: ['GET','POST'])]
+    #[Route('/add', name: 'app_api_post_add', methods: ['GET','POST'])]
     public function add(FormFactoryInterface $factory,Request $request,EntityManagerInterface $entityManager){
        
         $club = new Clubs;
@@ -63,7 +63,7 @@ class ApiPostController extends AbstractController
         ]));
     }
 
-    #[Route('/api/update/{id}', name: 'app_api_post_update', methods: ['GET','POST'])]
+    #[Route('/update/{id}', name: 'app_api_post_update', methods: ['GET','POST'])]
     public function edit($id, ClubsRepository $clubsRepository, Request $request, EntityManagerInterface $em){
         $club=$clubsRepository->find($id);
 
